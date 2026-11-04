@@ -7,7 +7,7 @@ Read **Current State** first, then the most recent entries.
 <!-- Keep this section short and always up to date. Overwrite it (do not append). -->
 
 - **Phase:** Setup
-- **Last entry:** AI-007
+- **Last entry:** AI-008
 - **Stack:** Python 3.15 + Flask 3.1.3, venv at `.venv/` (rebuilt 2026-11-04 from `C:\Users\liewp\AppData\Local\Python\pythoncore-3.15-64\python.exe`)
 - **Code written:** `api.py` (Flask-RESTful + Flask-SQLAlchemy, `UserModel`, `/api/users/` GET+POST; written by user), `create_db.py`
 - **Env tip:** prefer `.venv\Scripts\python.exe -m pip` / `-m flask` over the `.exe` launchers
@@ -18,7 +18,6 @@ Read **Current State** first, then the most recent entries.
 <!-- Remove an item once answered; record the answer as a log entry. -->
 
 - Q1: What is the project brief / what should the crane API do? (awaiting `project-details/`)
-- Q2: Should `.venv/` be removed from git and added to `.gitignore`? (currently staged)
 
 ---
 
@@ -92,4 +91,12 @@ Read **Current State** first, then the most recent entries.
 - reason: User asked to debug the SQLAlchemy traceback
 - decided_by: ai
 - related: -
+- human_log: no
+
+### AI-008 | 2026-11-04 | FIX
+- summary: `api.py`, `create_db.py` and `.gitignore` were never pushed to GitHub. `.gitignore` (auto-written by venv) had a `*` rule ignoring every file, so commit 9d638ca only removed `.venv/` and added nothing. Removed the `#` comment and `*` lines; kept `.venv/`, `__pycache__/`, `instance/`, `*.db`, `desktop.ini`. Q2 resolved: `.venv/` is untracked (9d638ca) and ignored.
+- files: .gitignore
+- reason: User asked whether everything had been deleted from GitHub
+- decided_by: ai
+- related: Q2, AI-005
 - human_log: no

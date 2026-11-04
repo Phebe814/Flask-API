@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV 'C:\Users\liewp\Documents\crane-api\.venv'
+set -gx VIRTUAL_ENV 'C:\Users\liewp\OneDrive\Desktop\AY2627S2\AMLO\flask-api\.venv'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"Scripts $PATH

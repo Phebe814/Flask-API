@@ -11,6 +11,7 @@ Intended for review and for writing the final project summary.
 |---|---|---|---|
 | D1 | 2026-11-03 | Set up a logging system to track all work and decisions | Student |
 | D2 | 2026-11-03 | Use an automatically loaded handover file so the AI assistant always starts with full context | AI (approved by student) |
+| D3 | 2026-11-04 | Rebuild the Python virtual environment and fix the requirements file encoding | Student |
 
 ---
 
@@ -33,6 +34,19 @@ Intended for review and for writing the final project summary.
 **Why:** Each AI session starts without memory of the last one. This file makes sure no context is lost between sessions.
 
 **Alternatives considered:** Reminding the AI manually each session. Rejected because it's easy to forget.
+
+---
+
+### D3 — Rebuild the virtual environment and fix the requirements file
+**Date:** 2026-11-04 · **Made by:** Student
+
+**Decision:** Delete the old virtual environment (`.venv`) and create a new one, then reinstall the packages. `requirements.txt` was also re-saved in UTF-8.
+
+**Why:** The project folder had been moved, and the old virtual environment still pointed to the old location, so `pip` could not run. `requirements.txt` had been saved in UTF-16, which `pip` doesn't always read correctly.
+
+**Alternatives considered:** Using `python -m pip` to work around the broken launcher. That works, but other tools in the environment would still have been broken.
+
+**Impact:** `pip`, `flask` and the app all work again. Flask-RESTful was not added, because plain Flask is enough to build the REST API.
 
 ---
 

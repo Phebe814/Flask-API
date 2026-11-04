@@ -6,7 +6,7 @@
     @"%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-@set "VIRTUAL_ENV=C:\Users\liewp\Documents\crane-api\.venv"
+@set "VIRTUAL_ENV=C:\Users\liewp\OneDrive\Desktop\AY2627S2\AMLO\flask-api\.venv"
 
 @if not defined PROMPT @set PROMPT=$P$G
 

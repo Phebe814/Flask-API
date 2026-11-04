@@ -7,9 +7,10 @@ Read **Current State** first, then the most recent entries.
 <!-- Keep this section short and always up to date. Overwrite it (do not append). -->
 
 - **Phase:** Setup
-- **Last entry:** AI-002
-- **Stack:** Python + Flask 3.1.3, venv at `.venv/`
-- **Code written:** none yet
+- **Last entry:** AI-007
+- **Stack:** Python 3.15 + Flask 3.1.3, venv at `.venv/` (rebuilt 2026-11-04 from `C:\Users\liewp\AppData\Local\Python\pythoncore-3.15-64\python.exe`)
+- **Code written:** `api.py` (Flask-RESTful + Flask-SQLAlchemy, `UserModel`, `/api/users/` GET+POST; written by user), `create_db.py`
+- **Env tip:** prefer `.venv\Scripts\python.exe -m pip` / `-m flask` over the `.exe` launchers
 - **Open questions:** see "Open Questions" below
 - **Next step:** wait for user to add project brief to `project-details/`, then plan
 
@@ -18,7 +19,6 @@ Read **Current State** first, then the most recent entries.
 
 - Q1: What is the project brief / what should the crane API do? (awaiting `project-details/`)
 - Q2: Should `.venv/` be removed from git and added to `.gitignore`? (currently staged)
-- Q3: `requirements.txt` is saved as UTF-16 (from PowerShell `>`); re-save as UTF-8 so `pip install -r` works reliably?
 
 ---
 
@@ -53,3 +53,43 @@ Read **Current State** first, then the most recent entries.
 - decided_by: ai
 - related: AI-001
 - human_log: yes
+
+### AI-003 | 2026-11-04 | NOTE
+- summary: Diagnosed install failure: `.venv\Scripts\pip.exe` launcher pointed at old venv path `C:\Users\liewp\Documents\crane-api\.venv` (venv had been moved); `python -m pip` worked. Advised Flask-RESTful is optional (plain Flask + jsonify is enough); not installed.
+- files: -
+- reason: User could not install Flask / Flask-RESTful
+- decided_by: ai
+- related: -
+- human_log: no
+
+### AI-004 | 2026-11-04 | ANSWER
+- summary: Q3 answered: re-saved `requirements.txt` from UTF-16 to UTF-8 (no BOM); contents unchanged
+- files: requirements.txt
+- reason: User approved; `pip install -r` now reads it reliably
+- decided_by: user
+- related: Q3
+- human_log: yes
+
+### AI-005 | 2026-11-04 | FIX
+- summary: Deleted and recreated `.venv` with base Python 3.15, reinstalled from requirements.txt; verified pip.exe, flask.exe and `GET /` returns 200
+- files: .venv/
+- reason: Moved venv had broken launchers with hard-coded old paths; user approved rebuild
+- decided_by: user
+- related: AI-003, Q2 (.venv still tracked in git, so the rebuild shows as many git changes)
+- human_log: yes
+
+### AI-006 | 2026-11-04 | FIX
+- summary: Checked the folder move. Old folder `C:\Users\liewp\Documents\crane-api` no longer exists; git root is the new folder; no project file references the old path. Deleted stale `__pycache__/` (compiled at old path); regenerated cleanly on re-run.
+- files: __pycache__/
+- reason: User asked to verify everything lives in the new folder after moving it
+- decided_by: ai
+- related: AI-005
+- human_log: no
+
+### AI-007 | 2026-11-04 | FIX
+- summary: `/api/users/` returned 500 `no such table: user_model`. DB had been created when the model was named `User` (table `user`); class later renamed to `UserModel` (table `user_model`). Re-ran `create_db.py` to create the missing table. Verified GET 200, POST 201; removed the test row. Old empty `user` table is left in the DB. Duplicate name/email on POST still gives 500 (IntegrityError, not handled); reported to user, not changed.
+- files: instance/database.db
+- reason: User asked to debug the SQLAlchemy traceback
+- decided_by: ai
+- related: -
+- human_log: no

@@ -7,7 +7,7 @@ Read **Current State** first, then the most recent entries.
 <!-- Keep this section short and always up to date. Overwrite it (do not append). -->
 
 - **Phase:** Setup
-- **Last entry:** AI-008
+- **Last entry:** AI-009
 - **Stack:** Python 3.15 + Flask 3.1.3, venv at `.venv/` (rebuilt 2026-11-04 from `C:\Users\liewp\AppData\Local\Python\pythoncore-3.15-64\python.exe`)
 - **Code written:** `api.py` (Flask-RESTful + Flask-SQLAlchemy, `UserModel`, `/api/users/` GET+POST; written by user), `create_db.py`
 - **Env tip:** prefer `.venv\Scripts\python.exe -m pip` / `-m flask` over the `.exe` launchers
@@ -99,4 +99,12 @@ Read **Current State** first, then the most recent entries.
 - reason: User asked whether everything had been deleted from GitHub
 - decided_by: ai
 - related: Q2, AI-005
+- human_log: no
+
+### AI-009 | 2026-11-04 | EDIT
+- summary: Added root `README.md`: setup (clone, venv, install, create_db, run), endpoint table, curl examples, project structure, known limitations (duplicate name/email gives 500; PATCH needs both fields)
+- files: README.md
+- reason: User asked for a README describing the Flask-API setup
+- decided_by: user
+- related: AI-007, AI-008
 - human_log: no
